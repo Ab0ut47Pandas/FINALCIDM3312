@@ -67,7 +67,7 @@ namespace CardVaultApp.Pages_Gradings
                 }
             }
 
-            // ✅ Send back to the correct PlayingCard
+
             return RedirectToPage("/PlayingCards/Details", new { id = Grading.PlayingCardID });
         }
 
