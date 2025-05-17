@@ -1,0 +1,15 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4">Welcome to CardVault</h1>
+    <p class="lead">Track, grade, and manage your playing cards.</p>
+
+    <div class="mt-4">
+        <a asp-page="/PlayingCards/Index" class="btn btn-primary btn-lg me-2">📇 View All Cards</a>
+        <a asp-page="/PlayingCards/Create" class="btn btn-success btn-lg">➕ Add New Card</a>
+    </div>
+</div>

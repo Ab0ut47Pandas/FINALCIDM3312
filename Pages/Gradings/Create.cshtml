@@ -1,0 +1,48 @@
+@page
+@model CardVaultApp.Pages_Gradings.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        }
+        
+        <h1>Create</h1>
+        
+    <h4>Grading</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Grading.Grade" class="control-label"></label>
+                <input asp-for="Grading.Grade" class="form-control" />
+                <span asp-validation-for="Grading.Grade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grading.GradedDate" class="control-label"></label>
+                <input asp-for="Grading.GradedDate" class="form-control" />
+                <span asp-validation-for="Grading.GradedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grading.Comments" class="control-label"></label>
+                <input asp-for="Grading.Comments" class="form-control" />
+                <span asp-validation-for="Grading.Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grading.PlayingCardID" class="control-label"></label>
+                <select asp-for="Grading.PlayingCardID" class ="form-control" asp-items="ViewBag.PlayingCardID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

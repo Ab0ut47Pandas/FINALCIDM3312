@@ -1,0 +1,73 @@
+@page "{id:int}"
+@model CardVaultApp.Pages_PlayingCards.DetailsModel
+
+@{
+    ViewData["Title"] = "Card Details";
+}
+
+<h1>Card Details</h1>
+
+<div>
+    <h4>PlayingCard</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Suit</dt>
+        <dd class="col-sm-10">@Model.PlayingCard.Suit</dd>
+
+        <dt class="col-sm-2">Value</dt>
+        <dd class="col-sm-10">@Model.PlayingCard.Value</dd>
+
+        <dt class="col-sm-2">Condition</dt>
+        <dd class="col-sm-10">@Model.PlayingCard.Condition</dd>
+
+        <dt class="col-sm-2">Year</dt>
+        <dd class="col-sm-10">@Model.PlayingCard.Year</dd>
+
+        <dt class="col-sm-2">Image URL</dt>
+        <dd class="col-sm-10">
+            <a href="@Model.PlayingCard.ImageUrl" target="_blank">@Model.PlayingCard.ImageUrl</a>
+        </dd>
+    </dl>
+</div>
+
+<div class="mb-3">
+    <a asp-page="./Edit" asp-route-id="@Model.PlayingCard.ID" class="btn btn-warning">Edit</a>
+    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+<hr />
+
+<h4 class="mt-4">Gradings</h4>
+<a asp-page="/Gradings/Create" asp-route-cardId="@Model.PlayingCard.ID" class="btn btn-success mb-2">Add Grading</a>
+
+@if (Model.PlayingCard.Gradings != null && Model.PlayingCard.Gradings.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Grade</th>
+                <th>Graded Date</th>
+                <th>Comments</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var grading in Model.PlayingCard.Gradings)
+        {
+            <tr>
+                <td>@grading.Grade</td>
+                <td>@grading.GradedDate.ToShortDateString()</td>
+                <td>@grading.Comments</td>
+                <td>
+                    <a asp-page="/Gradings/Edit" asp-route-id="@grading.ID" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="/Gradings/Delete" asp-route-id="@grading.ID" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p><em>No gradings recorded for this card yet.</em></p>
+}
